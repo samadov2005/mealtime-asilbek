@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1f6b45">
+  <title>MealTime</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+<div class="phone">
+
+<!-- SCREEN 1: LANDING -->
+<div class="screen active" id="s-landing">
+  <div class="land-nav">
+    <div class="land-logo">MealTime</div>
+    <div class="land-lang">O'ZB ▾</div>
+  </div>
+  <div class="land-hero">
+    <div class="land-brand">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#2d8a4e" stroke-width="2.2">
+        <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/><path d="M8 2l1 2M16 2l-1 2"/>
+      </svg>
+      MealTime
+    </div>
+    <div class="land-h1">Sog'lom tushlik,<br>o'z vaqtida</div>
+    <button class="land-btn" onclick="showScreen('s-login')">Boshlash</button>
+  </div>
+</div>
+
+<!-- SCREEN 2: LOGIN -->
+<div class="screen" id="s-login">
+  <div class="nav-bar">
+    <div class="nav-logo" style="font-size:15px;font-weight:700">MealTime</div>
+    <div class="nav-back" onclick="showScreen('s-landing')">←</div>
+    <div class="nav-mode">Student Mode</div>
+  </div>
+  <div class="login-body" id="login-step1">
+    <div class="login-deco"></div>
+    <div class="login-deco2">➤</div>
+    <div class="login-h">Xush kelibsiz!</div>
+    <div class="login-sub">Buyurtmani yakunlash uchun telefon raqamingiz bilan tizimga kiring yoki ro'yxatdan o'ting.</div>
+    <div class="phone-input">
+      <div class="phone-prefix">
+        <svg width="16" height="16" fill="none" stroke="#2d8a4e" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.9 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012.81 1h3a2 2 0 012 1.72c.13 1 .37 1.97.72 2.91a2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6l.91-.91a2 2 0 012.11-.45c.94.35 1.91.59 2.91.72A2 2 0 0122 16.92z"/></svg>
+        +998
+      </div>
+      <input type="tel" id="phone-num" placeholder="Telefon raqamingiz" maxlength="9">
+    </div>
+    <button class="sms-btn" onclick="showOTP()">SMS kodni olish</button>
+    <div class="login-terms">Ro'yxatdan o'tish orqali siz <a href="#">Foydalanish shartlari</a> va <a href="#">Maxfiylik siyosatini</a> qabul qilasiz.</div>
+    <div class="login-kirish">Hisobingiz bormi? <span onclick="showOTP()">Kirish</span></div>
+  </div>
+  <div class="login-body" id="login-step2" style="display:none">
+    <div class="login-deco"></div>
+    <div class="login-h">SMS kodni kiriting</div>
+    <div class="login-sub" id="otp-desc">+998 ** *** ** ga yuborildi</div>
+    <div class="otp-group">
+      <input class="otp-input" maxlength="1" type="tel" oninput="otpMove(this,0)">
+      <input class="otp-input" maxlength="1" type="tel" oninput="otpMove(this,1)">
+      <input class="otp-input" maxlength="1" type="tel" oninput="otpMove(this,2)">
+      <input class="otp-input" maxlength="1" type="tel" oninput="otpMove(this,3)">
+    </div>
+    <button class="sms-btn" onclick="showScreen('s-profile')">Tasdiqlash</button>
+    <div class="login-kirish" style="margin-top:16px">Kodni olmadingizmi? <span>Qayta yuborish</span></div>
+  </div>
+</div>
+
+<!-- SCREEN 3: PROFILE -->
+<div class="screen" id="s-profile">
+  <div class="nav-bar">
+    <div style="font-size:15px;font-weight:700">MealTime</div>
+    <div class="nav-back" onclick="showScreen('s-login')">←</div>
+    <div class="nav-mode">Pro Mode</div>
+  </div>
+  <div class="profile-body">
+    <div class="profile-h">Keling, siz uchun shaxsiy reja tuzamiz!</div>
+    <div class="profile-sub">Aniqroq menyu taklif qilish uchun ma'lumotlaringizni kiriting.</div>
+    <div class="field-label">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      Jinsingiz
+    </div>
+    <div class="gender-row">
+      <div class="gender-btn active" id="btn-erkak" onclick="selectGender('erkak')">
+        <span style="font-size:28px">🧑</span> Erkak
+      </div>
+      <div class="gender-btn" id="btn-ayol" onclick="selectGender('ayol')">
+        <span style="font-size:28px">👩</span> Ayol
+      </div>
+    </div>
+    <div class="field-label">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      Tug'ilgan sanangiz
+    </div>
+    <div class="inp-wrap">
+      <input class="inp-field" type="text" placeholder="DD.MM.YYYY">
+    </div>
+    <div class="field-label">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+      Jismoniy o'lchamlar
+    </div>
+    <div class="two-col">
+      <input class="inp-field" type="number" placeholder="Bo'y (sm)">
+      <input class="inp-field" type="number" placeholder="Vazn (kg)">
+    </div>
+    <div class="field-label">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      Faollik darajasi
+    </div>
+    <div class="radio-group" style="margin-bottom:16px">
+      <div class="radio-item" onclick="selectRadio(0)">
+        <div class="radio-circle"><div class="radio-dot"></div></div>
+        <span>Kam harakat (Ofis ishi)</span>
+      </div>
+      <div class="radio-item active" onclick="selectRadio(1)">
+        <div class="radio-circle"><div class="radio-dot"></div></div>
+        <span>O'rtacha faol (Haftada 3-5 kun sport)</span>
+      </div>
+      <div class="radio-item" onclick="selectRadio(2)">
+        <div class="radio-circle"><div class="radio-dot"></div></div>
+        <span>Juda faol (Kundalik intensiv mashg'ulot)</span>
+      </div>
+    </div>
+    <div class="field-label">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/><path d="M12 8v4l3 3"/></svg>
+      Maqsadingiz
+    </div>
+    <div class="tag-group">
+      <div class="tag active" onclick="toggleTag(this)">Vazn yo'qotish</div>
+      <div class="tag" onclick="toggleTag(this)">Mushak olish</div>
+      <div class="tag" onclick="toggleTag(this)">Sog'lom ovqatlanish</div>
+      <div class="tag" onclick="toggleTag(this)">Energiya oshirish</div>
+    </div>
+    <div class="field-label">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      Kasalliklar / allergiyalar
+    </div>
+    <div class="tag-group" style="margin-bottom:8px">
+      <div class="tag" onclick="toggleTag(this)">Diabet</div>
+      <div class="tag" onclick="toggleTag(this)">Gipertenziya</div>
+      <div class="tag" onclick="toggleTag(this)">Laktoza</div>
+      <div class="tag" onclick="toggleTag(this)">Gluten</div>
+      <div class="tag" onclick="toggleTag(this)">Yog'li ovqat yo'q</div>
+      <div class="tag" onclick="toggleTag(this)">Yo'q</div>
+    </div>
+    <button class="calc-btn" onclick="showScreen('s-menu')">Menyuni hisoblash →</button>
+  </div>
+</div>
+
+<!-- SCREEN 4: MENU -->
+<div class="screen" id="s-menu">
+  <div class="menu-header">
+    <div class="menu-h">Haftalik Menyu</div>
+    <div class="days-tab">
+      <button class="day-btn active" onclick="setDay(this,'Dushanba')">Du</button>
+      <button class="day-btn" onclick="setDay(this,'Seshanba')">Se</button>
+      <button class="day-btn" onclick="setDay(this,'Chorshanba')">Ch</button>
+      <button class="day-btn" onclick="setDay(this,'Payshanba')">Pa</button>
+      <button class="day-btn" onclick="setDay(this,'Juma')">Ju</button>
+    </div>
+  </div>
+  <div class="menu-body" id="menu-body">
+    <div class="day-label">📅 <strong>Dushanba</strong> uchun tavsiya etilgan taomlar</div>
+
+    <div class="meal-card" onclick="openModal('m1')" id="card-m1">
+      <img class="meal-img" src="assets/images/meal-chicken-rice.jpg" alt="Chicken Rice Bowl">
+      <div class="meal-info">
+        <div class="meal-name">Tovuq va jigarrang guruch</div>
+        <div class="meal-macros">🔥 480 kal · 🥩 38g oqsil · 🌾 52g uglevodlar · 🥑 9g yog'</div>
+        <div class="meal-bottom">
+          <div class="meal-price">32 000 so'm</div>
+          <button class="meal-select-btn" id="btn-m1">Tanlash</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-card" onclick="openModal('m2')" id="card-m2">
+      <img class="meal-img" src="assets/images/meal-drumstick-rice.jpg" alt="Chicken Drumsticks">
+      <div class="meal-info">
+        <div class="meal-name">Tovuq boldir + makkajo'xori guruch</div>
+        <div class="meal-macros">🔥 520 kal · 🥩 42g oqsil · 🌾 48g uglevodlar · 🥑 14g yog'</div>
+        <div class="meal-bottom">
+          <div class="meal-price">35 000 so'm</div>
+          <button class="meal-select-btn" id="btn-m2">Tanlash</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-card" onclick="openModal('m3')" id="card-m3">
+      <img class="meal-img" src="assets/images/meal-egg-beef.jpg" alt="Breakfast Plate">
+      <div class="meal-info">
+        <div class="meal-name">Tuxum va go'sht nonushtasi</div>
+        <div class="meal-macros">🔥 430 kal · 🥩 32g oqsil · 🌾 28g uglevodlar · 🥑 18g yog'</div>
+        <div class="meal-bottom">
+          <div class="meal-price">28 000 so'm</div>
+          <button class="meal-select-btn" id="btn-m3">Tanlash</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-card" onclick="openModal('m4')" id="card-m4">
+      <img class="meal-img" src="assets/images/meal-rice-chicken-egg.jpg" alt="Simple Rice Chicken">
+      <div class="meal-info">
+        <div class="meal-name">Oddiy guruch, tovuq va tuxum</div>
+        <div class="meal-macros">🔥 390 kal · 🥩 35g oqsil · 🌾 45g uglevodlar · 🥑 7g yog'</div>
+        <div class="meal-bottom">
+          <div class="meal-price">25 000 so'm</div>
+          <button class="meal-select-btn" id="btn-m4">Tanlash</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-card" onclick="openModal('m5')" id="card-m5">
+      <img class="meal-img" src="assets/images/meal-vegetable-quiche.jpg" alt="Vegetable Quiche">
+      <div class="meal-info">
+        <div class="meal-name">Sabzavotli kish (kechki taom)</div>
+        <div class="meal-macros">🔥 310 kal · 🥩 18g oqsil · 🌾 30g uglevodlar · 🥑 12g yog'</div>
+        <div class="meal-bottom">
+          <div class="meal-price">22 000 so'm</div>
+          <button class="meal-select-btn" id="btn-m5">Tanlash</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-card" onclick="openModal('m6')" id="card-m6">
+      <img class="meal-img" src="assets/images/meal-strawberry-smoothie.jpg" alt="Strawberry Smoothie">
+      <div class="meal-info">
+        <div class="meal-name">Qulupnay va jo'xori uni smuzisi</div>
+        <div class="meal-macros">🔥 250 kal · 🥩 8g oqsil · 🌾 40g uglevodlar · 🥑 5g yog'</div>
+        <div class="meal-bottom">
+          <div class="meal-price">18 000 so'm</div>
+          <button class="meal-select-btn" id="btn-m6">Tanlash</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-card" onclick="openModal('m7')" id="card-m7">
+      <img class="meal-img" src="assets/images/meal-beet-detox.jpg" alt="Detox Juice">
+      <div class="meal-info">
+        <div class="meal-name">Lavlagi detoks shirası</div>
+        <div class="meal-macros">🔥 180 kal · 🥩 3g oqsil · 🌾 38g uglevodlar · 🥑 1g yog'</div>
+        <div class="meal-bottom">
+          <div class="meal-price">15 000 so'm</div>
+          <button class="meal-select-btn" id="btn-m7">Tanlash</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-card" onclick="openModal('m8')" id="card-m8">
+      <img class="meal-img" src="assets/images/meal-protein-smoothie.jpg" alt="Protein Smoothie">
+      <div class="meal-info">
+        <div class="meal-name">Tvorog bilan oqsilli smuzı</div>
+        <div class="meal-macros">🔥 350 kal · 🥩 22g oqsil · 🌾 35g uglevodlar · 🥑 10g yog'</div>
+        <div class="meal-bottom">
+          <div class="meal-price">20 000 so'm</div>
+          <button class="meal-select-btn" id="btn-m8">Tanlash</button>
+        </div>
+      </div>
+    </div>
+
+    <div style="height:80px"></div>
+  </div>
+  <div class="menu-footer">
+    <div class="menu-footer-info">Tanlangan: <strong id="sel-count">0 ta taom</strong> · Jami: <strong id="sel-cal">0 kal</strong></div>
+    <button class="confirm-btn" onclick="showScreen('s-cart')">Savatga o'tish →</button>
+  </div>
+</div>
+
+<!-- SCREEN 5: CART -->
+<div class="screen" id="s-cart">
+  <div class="nav-bar">
+    <div style="font-size:15px;font-weight:700">MealTime</div>
+    <div class="nav-back" onclick="showScreen('s-menu')">←</div>
+    <div class="nav-mode">Savat</div>
+  </div>
+  <div class="cart-body">
+    <div class="cart-section-h">📋 Buyurtma rejasi</div>
+    <div class="cart-grid">
+      <div class="cart-plan">
+        <p>📅 Dushanba<br>🍽 Tanlangan taomlar<br>📍 Yetkazib berish</p>
+        <div class="total">Jami: 95 000 so'm</div>
+      </div>
+      <div class="delivery-box">
+        <div class="select-wrap">
+          <div class="select-label-sm">Manzil</div>
+          <select class="sel-field">
+            <option>TDTU, 2-bino</option>
+            <option>TDTU, 3-bino</option>
+            <option>Yotoqxona №1</option>
+          </select>
+        </div>
+        <div class="select-wrap">
+          <div class="select-label-sm">Vaqt</div>
+          <select class="sel-field">
+            <option>12:00 – 12:30</option>
+            <option>12:30 – 13:00</option>
+            <option>13:00 – 13:30</option>
+          </select>
+        </div>
+        <textarea class="note-field" rows="2" placeholder="Izoh (ixtiyoriy)..."></textarea>
+      </div>
+    </div>
+    <div class="payment-box">
+      <div class="cart-section-h" style="margin-bottom:10px">💳 To'lov usuli</div>
+      <div class="payment-item">
+        <div class="pay-icon">🏦</div>
+        <div class="pay-info">
+          <p>Click / Payme</p>
+          <small>Online to'lov</small>
+        </div>
+      </div>
+      <div class="pay-note">* Buyurtma tasdiqlangandan so'ng to'lov amalga oshiriladi</div>
+    </div>
+  </div>
+  <div class="bottom-bar">
+    <div class="total-row">
+      <div class="total-label">Jami to'lov:</div>
+      <div class="total-val">95 000 so'm</div>
+    </div>
+    <button class="order-btn" onclick="showScreen('s-success')">✓ Buyurtma berish</button>
+  </div>
+</div>
+
+<!-- SCREEN 6: SUCCESS -->
+<div class="screen" id="s-success">
+  <div class="success-icon">✅</div>
+  <div class="success-h">Buyurtma qabul qilindi!</div>
+  <div class="success-p">Sizning buyurtmangiz muvaffaqiyatli joylashtirildi. Yetkazib berish vaqtida xabar beramiz.</div>
+  <div class="success-card">
+    <div class="success-row"><span>📅 Kun</span><span>Dushanba</span></div>
+    <div class="success-row"><span>⏰ Vaqt</span><span>12:00 – 12:30</span></div>
+    <div class="success-row"><span>📍 Manzil</span><span>TDTU, 2-bino</span></div>
+    <div class="success-row"><span>💰 Jami</span><span>95 000 so'm</span></div>
+  </div>
+  <button class="home-btn" onclick="showScreen('s-landing')">🏠 Bosh sahifaga qaytish</button>
+</div>
+
+</div>
+
+
+
+<!-- MEAL DETAIL MODAL -->
+<div class="meal-modal-overlay" id="meal-modal" onclick="closeModalOutside(event)">
+  <div class="meal-modal" id="modal-inner">
+    <div style="position:relative">
+      <img class="modal-img" id="modal-img" src="" alt="">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-name" id="modal-name"></div>
+      <div class="modal-price" id="modal-price"></div>
+      <div class="modal-section">📊 Kaloriya va ozuqa qiymati</div>
+      <div class="modal-macros-grid">
+        <div class="macro-box"><div class="macro-val" id="modal-cal"></div><div class="macro-label">🔥 Kaloriya</div></div>
+        <div class="macro-box"><div class="macro-val" id="modal-protein"></div><div class="macro-label">🥩 Oqsil (protein)</div></div>
+        <div class="macro-box"><div class="macro-val" id="modal-carbs"></div><div class="macro-label">🌾 Uglevodlar</div></div>
+        <div class="macro-box"><div class="macro-val" id="modal-fat"></div><div class="macro-label">🥑 Yog'lar</div></div>
+      </div>
+      <div class="modal-section">🧾 Tarkibi</div>
+      <div class="modal-ingredients" id="modal-ingredients"></div>
+      <button class="modal-add-btn" id="modal-add-btn" onclick="addFromModal()">Savatga qo'shish</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>
